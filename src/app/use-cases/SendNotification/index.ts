@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Content } from '../entities/content';
-import { Notification } from '../entities/notification';
-import { NotificationsRepository } from '../repositories/notifications-repository';
+import { NotificationsRepository } from '@application/repositories/notifications-repository';
+import { Content } from '@application/entities/content';
+import { Notification } from '@application/entities/notification';
 
 interface SendNotificationRequest {
   recipientId: string;
@@ -28,7 +28,6 @@ export class SendNotification {
       recipientId,
     });
 
-    //persistir essa notificação no banco
     await this.notificationsRepository.create(notification);
 
     return { notification };
